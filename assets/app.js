@@ -5,7 +5,8 @@
 (function () {
   'use strict';
 
-  const MAIN_BASE = window.FFT_API_BASE || '';
+  // 账号接口（玩家登录 / 管理员登录）由主站后端提供；Worker 上线后改成同一个 API 地址
+  const MAIN_BASE = window.FFT_MAIN_BASE || 'https://fgame12.netlify.app';
   const LS_TOKEN = 'fft_faq_token';
   const LS_PROFILE = 'fft_faq_profile';
   const SS_ADMIN = 'fft_faq_admin_token';
