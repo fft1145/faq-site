@@ -423,7 +423,11 @@
 
   /* ---------------- FAQ data ---------------- */
   async function loadFaq() {
-    const res = await request('/api/faq');
+    let res = await request('/api/faq');
+    // 接口不可用（如静态托管迁移期）时展示内置题库，保证页面可读
+    if (!res.ok && window.FFT_FALLBACK_FAQ) {
+      res = { ok: true, status: 200, data: window.FFT_FALLBACK_FAQ, message: '' };
+    }
     if (!res.ok) {
       $('loadState').textContent = res.status === 404
         ? 'FAQ 接口暂不可用，请稍后刷新页面。'
